@@ -8,11 +8,11 @@ unsigned char CCSDSPacketProtocolHeadrGN (unsigned char PVN,PacketType pt,SecHea
 										{
 											if (ph != NULL)
 											{
-												ph->Primary_Header_Fields.Packet_Version_Number=PacketVersionNumber;
-												ph->Primary_Header_Fields.Packet_Type=Telcommand_pcket;
-												ph->Primary_Header_Fields.Sec_Header_Flag=Without_Sec_header;
-												ph->Primary_Header_Fields.APPID=Idle_packet_APPID;
-												ph->Primary_Header_Fields.SEQUENCE_FLAGS=continue_segment;
+												ph->Primary_Header_Fields.Packet_Version_Number=PVN;
+												ph->Primary_Header_Fields.Packet_Type=pt;
+												ph->Primary_Header_Fields.Sec_Header_Flag=SH;
+												ph->Primary_Header_Fields.APPID=APPID;
+												ph->Primary_Header_Fields.SEQUENCE_FLAGS=Seg;
 												ph->Primary_Header_Fields.PacketSeqCount=Packet_Sequence_Count_or_Name;
 												ph->Primary_Header_Fields.PD_Length=Packet_Data_Length;
 
@@ -26,13 +26,15 @@ unsigned char CCSDSPacketProtocolHeadrGN (unsigned char PVN,PacketType pt,SecHea
 											ph = (Primarry_Hrader*) malloc(5);
 										}
 
-int  CCSDSPacketConstruction (Primarry_Hrader * ph,unsigned char *Data,int Data_Length,unsigned char * Data_output)
+unsigned char  CCSDSPacketConstruction (Primarry_Hrader * ph,unsigned char *Data,int Data_Length,unsigned char * Data_output)
 										{
 
 										if (ph != NULL)
 											{
 												ph->Primary_Header_Fields.PD_Length=Data_Length;
-
+												Data_output = realloc(Data_output,sizeof(5+Data_Length));
+												memcpy(Data_output,ph,5);
+												memcpy(Data_output+5,Data,Data_Length);
 											}
 											else
 											{
@@ -41,9 +43,7 @@ int  CCSDSPacketConstruction (Primarry_Hrader * ph,unsigned char *Data,int Data_
 
 											}
 
-										Data_output = realloc(Data_output,sizeof(5+Data_Length));
-										memcpy(Data_output,ph,5);
-										memcpy(Data_output+5,Data,Data_Length);
+										
 										}
 										
 
