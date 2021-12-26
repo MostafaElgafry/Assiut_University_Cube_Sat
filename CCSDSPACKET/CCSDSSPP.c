@@ -46,23 +46,7 @@ int  CCSDSPacketConstruction (Primarry_Hrader * ph,unsigned char *Data,int Data_
 										memcpy(Data_output+5,Data,Data_Length);
 										}
 										
-unsigned char * CCSDSPacketProtocolInit(unsigned char PVN,PacketType pt,SecHeader SH,unsigned int APPID,segmentation Seg,
-                                        unsigned short Packet_Sequence_Count_or_Name,unsigned short Packet_Data_Length,Primarry_Hrader * ph)
-										{
 
-
-
-
-
-
-
-
-
-
-
-
-
-										}
 void CCSDSPacketSetSequenceNumber (unsigned short Packet_Sequence_Count_or_Name,Primarry_Hrader * ph)
 										{
 										
@@ -105,3 +89,24 @@ void CCSDSPacketSetLength (unsigned short Packet_Data_Length,Primarry_Hrader * p
 										ph->Primary_Header_Fields.PD_Length=Packet_Data_Length;	
 										
 										}
+int  CCSDSPacketExtraction (Primarry_Hrader * ph,unsigned char *Data,int Data_Length,unsigned char * DataField)
+										{
+											
+										}
+unsigned char * CCSDSPacketProtocolInit(unsigned char PVN,PacketType pt,SecHeader SH,unsigned int APPID,segmentation Seg,
+                                        unsigned short Packet_Sequence_Count_or_Name,unsigned short Packet_Data_Length,Primarry_Hrader * ph)
+										{
+
+
+
+
+
+
+
+
+
+
+
+
+
+										}										
