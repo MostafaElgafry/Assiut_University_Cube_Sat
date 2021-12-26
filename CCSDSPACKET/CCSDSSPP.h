@@ -35,7 +35,7 @@ With_Sec_header = 0b1
 typedef union Primarry_Hrader
 {
     unsigned char Primarry_Hrader_[6];
-	
+
     struct
         {
             unsigned     char a0;
@@ -53,7 +53,7 @@ typedef union Primarry_Hrader
         unsigned char SEQUENCE_FLAGS:2;
         unsigned char PSeqCount_;//:14;  //PACKET SEQUENCE COUNT OR PACKET NAME
         unsigned char PD_Length_;//:16;  //PACKET DATA LENGTH*/
-		
+
 	struct Primary_Header_Fields
 		{
 			unsigned short Packet_Version_Number:3;
@@ -64,7 +64,7 @@ typedef union Primarry_Hrader
 			unsigned short PacketSeqCount:14;  //PACKET SEQUENCE COUNT OR PACKET NAME
 			unsigned short PD_Length:16;  //PACKET DATA LENGTH
 		}Primary_Header_Fields;
-		
+
 }Primarry_Hrader;
 
 typedef union
@@ -137,7 +137,7 @@ int CheckEndianness();
 unsigned char * CCSDSPacketProtocolInit(unsigned char PVN,PacketType pt,SecHeader SH,unsigned int APPID,segmentation Seg,
                                         unsigned short Packet_Sequence_Count_or_Name,unsigned short Packet_Data_Length,Primarry_Hrader * ph);
 
-void CCSDSPacketProtocolHeadrGN (unsigned char PVN,PacketType pt,SecHeader SH,unsigned short APPID,segmentation Seg,
+unsigned char CCSDSPacketProtocolHeadrGN (unsigned char PVN,PacketType pt,SecHeader SH,unsigned short APPID,segmentation Seg,
                                         unsigned short Packet_Sequence_Count_or_Name,unsigned short Packet_Data_Length,Primarry_Hrader * ph);
 
 void CCSDSPacketSetSequenceNumber (unsigned short Packet_Sequence_Count_or_Name,Primarry_Hrader * ph);
